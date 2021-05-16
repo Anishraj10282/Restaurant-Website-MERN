@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu-JustEatIt</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <script src="https://kit.fontawesome.com/4695254919.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>JUST EAT IT</h1>
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" onClick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="/order-online">Order Online</a>
+            <a href="/about">About</a>
+            <a href="/reservation">Reservation</a>
+            <a href="" class="active">Login</a>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="container">
+            <div class="login-box">
+                <div class="login-area">
+                    <form action="signup" method="post">
+                        <input type="text" name="name" id="name" placeholder="Enter your Name">
+                        <input type="number" name="phone" id="phone" placeholder="Enter your Number">
+                        <input type="password" name="password" id="password" placeholder="Enter Your Password">
+                        <input type="submit" value="Sign Up">
+                    </form>
+                    <div class="sign_up">
+                        Already have an account?<br>
+                        <a href="/login" class="link">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function myFunction()
+        {
+            console.log(2);
+            var x = document.getElementById("navbar");
+            if(!x.classList.contains("responsive"))
+            {
+                console.log(x.classList);
+                x.classList.add("responsive");
+                console.log(x.classList);
+            }
+            else
+            {
+                x.classList.remove('responsive');
+            }
+        }
+    </script>
+
+</body>
+</html>

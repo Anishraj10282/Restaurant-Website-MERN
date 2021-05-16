@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Item</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/add-item.css">
+</head>
+</head>
+<body>
+    <header>
+        <h1>JUST EAT IT</h1>
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" onClick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/admin/orders" class="active">Orders</a>
+            <a href="#">Dashboard</a>
+            <a href="/admin/add-item">Add New Recepie</a>
+            <a href="#">Edit Product</a>
+            <a href="#">Reservation Status</a>
+            
+        </div>
+    </header>
+    <main>
+    
+        <form action="/admin/add-item" method="POST" enctype="multipart/form-data">
+            <input id="title" type="text" name="title" placeholder="Recepie Title"><br>
+            
+            <input id="price" type="number" name="price" placeholder="Price"><br>
+            <input id="discount" type="number" name="discount" placeholder="Discount"><br>
+            <input id="quantity" type="number" name="quantity" placeholder="Quantity"><br>
+            <select name="category" id="category">
+                <option value="" disabled selected>Select Category</option>
+                <% categories.forEach((category)=>{ %> 
+                    <option value="<%= category._id %>"><%= category.name %></option>
+                <% }); %>
+            </select>
+            <input type="file" name="avatar" id="avatar"/><br>
+            <input type="submit" value="Add New Item" class="btn">
+        </form>
+    </main>
+    <script>
+        function myFunction()
+        {
+            console.log(2);
+            var x = document.getElementById("navbar");
+            if(!x.classList.contains("responsive"))
+            {
+                console.log(x.classList);
+                x.classList.add("responsive");
+                console.log(x.classList);
+            }
+            else
+            {
+                x.classList.remove('responsive');
+            }
+        }
+    </script>
+</body>
+</html>

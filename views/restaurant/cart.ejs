@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu-JustEatIt</title>
+    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <script src="https://kit.fontawesome.com/4695254919.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>JUST EAT IT</h1>
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" onClick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/">Home</a>
+            <a href="menu">Menu</a>
+            <a href="/order-online" class="active">Order Online</a>
+            <a href="/about">About</a>
+            <a href="/reservation">Reservation</a>
+            <a href="/login">Login</a>
+        </div>
+    </header>
+    
+    <main>
+        <div class="cart-area">
+            <div class="order-area">
+                <% orders.forEach(function(order){ %>
+                    <div class="order-item">
+                        <div class="item-image">
+                            <img src="<%= order.image  %>" alt="order-image">
+                        </div>
+                        <div class="item-name">
+                            <%= order.title %>
+                        </div>
+                        <div class="item-qty">
+                            <%= order.qty %>
+                        </div>
+                        <div class="item-total">
+                            <%= (order.price * order.qty) %>
+                        </div>
+                    </div>
+                <% }); %>
+                <hr>
+                <div class="order-item">
+                    <div></div>
+                    <div class="total-title">Total MRP:</div>
+                    <div></div>
+                    <div class="total">
+                        <%= total %>
+                    </div>
+                </div>
+                <div class="order-item">
+                    <div></div>
+                    <div class="total-title">Discount:</div>
+                    <div></div>
+                    <div class="total">
+                        <%= discount %>
+                    </div>
+                </div>
+                <div class="order-item">
+                    <div></div>
+                    <div class="total-title">Total Amont:</div>
+                    <div></div>
+                    <div class="total">
+                        <%= total_after_discount %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="sticky-area">
+        Pay and Order
+    </div>
+    <script>
+        function myFunction()
+        {
+            console.log(2);
+            var x = document.getElementById("navbar");
+            if(!x.classList.contains("responsive"))
+            {
+                console.log(x.classList);
+                x.classList.add("responsive");
+                console.log(x.classList);
+            }
+            else
+            {
+                x.classList.remove('responsive');
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu-JustEatIt</title>
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <script src="https://kit.fontawesome.com/4695254919.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>JUST EAT IT</h1>
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" onClick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/">Home</a>
+            <a href="#" class="active">Menu</a>
+            <a href="/order-online">Order Online</a>
+            <a href="/about">About</a>
+            <a href="/reservation" class="active">Reservation</a>
+            <a href="/login" class="active-login">Login</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h3 class="menu-title">Our Menu</h3>
+        <div class="menu-container">
+            <% category.forEach(function(c){ %> 
+                <div class="menu-item">
+                    <h3><%= c.category %></h3>
+                    <div class="item-container">
+                        <% c.dishes.forEach(function(dish){ %> 
+                            <div class="item-card">
+                                <img src="<%= dish.image %>">
+                                <%= dish.title %>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    
+    <script>
+        function myFunction()
+        {
+            console.log(2);
+            var x = document.getElementById("navbar");
+            if(!x.classList.contains("responsive"))
+            {
+                console.log(x.classList);
+                x.classList.add("responsive");
+                console.log(x.classList);
+            }
+            else
+            {
+                x.classList.remove('responsive');
+            }
+        }
+    </script>
+
+</body>
+</html>

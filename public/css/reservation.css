@@ -1,0 +1,171 @@
+.container
+{
+    background-image: url("../images/reservation-bg.jpg");
+    color:white;
+    min-height:100vh;
+}
+
+section
+{
+    max-width:1200px;
+    margin:auto;
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:120px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:30px;
+}
+
+.contact-us
+{
+    margin:auto;
+    margin-top: 20px;
+    text-align:center;
+    max-width: 600px;
+}
+
+.contact-us > h3
+{
+    background:white;
+    border-radius: 5px;
+    padding:10px;
+    margin:auto;
+    color:rgb(185, 65, 71);
+    width:fit-content;
+    border-bottom:1px solid rgb(185, 65, 71);
+    margin-bottom:10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h2
+{
+    text-align: center;
+    padding:10px;
+}
+
+.contact-us>p
+{
+    padding:15px;
+    text-align: center;
+    padding-top:10px;
+    margin-bottom:20px;
+}
+
+.contact-card
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align:center;
+    line-height: 25px;
+    grid-gap:20px;
+}
+
+.phone > h3, .email>h3
+{
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+.contact-icon
+{
+    background-color:rgb(185, 65, 71);
+    color:white;
+    padding:12px;
+    border-radius:50%;
+}
+
+
+.reservation-card
+{
+    padding:25px;
+    max-width: 600px;
+    width:100%;
+    margin:auto;
+    background: white;
+    color:black;
+    border-radius: 8px;
+}
+
+.form-area
+{
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-gap:20px;
+}
+
+.form-area>input , .form-area>textarea
+{
+    padding:10px;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 5px;
+}
+.form-area>input:focus , .form-area>button:focus, .form-area>textarea:focus
+{
+    outline: none;
+}
+
+.form-area > button:hover
+{
+    transform:scale(1.01);
+}
+
+.form-area > button
+{
+    padding:15px;
+    text-align: center;
+    font-weight: 550;
+    font-size: 1.1rem;
+    color:white;
+    background:rgb(185, 65, 71);
+    border:none;
+    border-radius: 5px;
+}
+
+@media screen and (max-width:900px)
+{
+    section
+    {
+        grid-template-columns: 1fr;
+    }
+    .container
+    {
+        padding-bottom:40px;
+    }
+}
+
+@media screen and (max-width:500px)
+{
+    .contact-card
+    {
+        grid-template-columns: 1fr;
+        grid-gap:60px;
+    }
+}
+
+textarea
+{
+    resize: none;
+}
+
+.phone , .email
+{
+    position: relative;
+    background:white;
+    width:fit-content;
+    color:black;
+    padding:20px;
+    padding-top: 25px;
+    border-radius:10px;
+    margin:auto;
+    margin-top:25px;
+}
+
+.phone> i , .email>i
+{
+    position:absolute;
+    margin:auto;
+    top:-30px;
+    right:55px;
+}

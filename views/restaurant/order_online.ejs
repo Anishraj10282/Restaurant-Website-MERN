@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/order-online.css">
+    <script src="https://kit.fontawesome.com/4695254919.js" crossorigin="anonymous"></script>
+    <title>Order | Just Eat It</title>
+</head>
+<body>
+    <header>
+        <h1>JUST EAT IT</h1>
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" onClick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/">Home</a>
+            <a href="/menu">Menu</a>
+            <a href="#" class="active">Order Online</a>
+            <a href="/about">About</a>
+            <a href="/reservation" class="active">Reservation</a>
+            <a href="/login" class="active-login">Login</a>
+        </div>
+    </header>
+    <form action="/add-to-cart" id="form" method="post">
+        <main>
+            <menu>
+                
+                    <% category.forEach(function(c){ %>
+                        <h5 class="category-title"><%= c.category %></h5>
+                        <div class="category-card">
+                            <% c.dishes.forEach(function(dish){ %>
+                                <div class="dish-card">
+                                    <div class="img-area">
+                                        <img class="dish-image" src="<%= dish.image %>" alt="">
+                                    </div>
+                                    <div class="dish-title"><%= dish.title %></div>
+                                    <div class="dish-price">
+                                        Rs.<span id="after-discount" ><%= (dish.price * (1-(dish.discount)/100)).toFixed(2) %></span>
+                                        <strike> <%= dish.price %> </strike>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <i onclick="increase('<%= dish._id %>','<%= (dish.price * (1-(dish.discount)/100)).toFixed(2) %>')" class="plus fas fa-plus"></i>
+                                        <span id="<%= dish._id %>" class="plate-numbers">0</span>
+                                        <input type="hidden" name="<%= dish._id %>" class="<%= dish._id %>">
+                                        <i onclick="decrease('<%= dish._id %>','<%= (dish.price * (1-(dish.discount)/100)).toFixed(2) %>')" class="minus fas fa-minus"></i>
+                                    </div> 
+                                </div>
+                            <% }); %>
+                        <br>
+                        </div>
+                    <% }); %>
+            </menu>
+        </main>
+        <div class="sticky-cart">
+            <div class="cart-content">
+                <div class="cart-title">Cart</div>
+                <div class="cart-grid">
+                    <div>Cart-Items: <span id="cart-items">0</span></div>
+                    <div>Cart-Total: Rs.<span id="total-price">0</span></div>
+                </div>
+            </div>
+            <input type="submit" class="btn" value="Add to Cart"/>
+        </div>
+    </form>
+    <script>
+        
+        function myFunction()
+        {
+            console.log(2);
+            var x = document.getElementById("navbar");
+            if(!x.classList.contains("responsive"))
+            {
+                console.log(x.classList);
+                x.classList.add("responsive");
+                console.log(x.classList);
+            }
+            else
+            {
+                x.classList.remove('responsive');
+            }
+        }
+        function increase(y, price)
+        {
+            
+            if(+document.getElementById(y).firstChild.nodeValue===0)
+            {
+                document.getElementById('cart-items').firstChild.nodeValue = +document.getElementById('cart-items').firstChild.nodeValue +1;
+            }
+            document.getElementById(y).firstChild.nodeValue = +document.getElementById(y).firstChild.nodeValue+1;
+            document.getElementById('total-price').firstChild.nodeValue = (+document.getElementById('total-price').firstChild.nodeValue + +price).toFixed(2); 
+            document.getElementsByClassName(y)[0].value = document.getElementById(y).firstChild.nodeValue;
+            
+        }
+
+        function decrease(y, price)
+        {
+            var x = document.getElementById(y).firstChild.nodeValue;
+            if(+document.getElementById(y).firstChild.nodeValue===1)
+            {
+                document.getElementById('cart-items').firstChild.nodeValue = +document.getElementById('cart-items').firstChild.nodeValue - 1;
+            }
+            if(+x > 0)
+            {
+                document.getElementById(y).firstChild.nodeValue = +x - 1;
+                document.getElementsByClassName(y)[0].value = +x - 1;
+                document.getElementById('total-price').firstChild.nodeValue = (+document.getElementById('total-price').firstChild.nodeValue - +price).toFixed(2); 
+            }
+            
+        }
+
+    </script>
+</body>
+</html>

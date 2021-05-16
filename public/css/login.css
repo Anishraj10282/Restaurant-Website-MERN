@@ -1,0 +1,79 @@
+.main
+{
+    padding-top:100px;
+}
+
+.container
+{
+    
+    display:grid;
+    grid-template-columns: 1fr;
+    text-align:center;
+}
+
+.login-box
+{
+    width:100%;
+    margin:auto;
+    text-align:center;
+    margin:auto;
+    padding:10px;
+    text-align:center;
+
+}
+
+.login-area
+{
+    width:100%;
+    max-width:400px;
+    margin:auto;
+    text-align:center;
+    border:1px solid black;
+    border-radius:10px;
+    padding:20px;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+.login-area input
+{
+    width:90%;
+    margin:auto;
+    display:block;
+    margin-bottom:25px;
+    outline:none;
+    border:none;
+    border-bottom:1px solid black;
+}
+
+.login-area input[type=submit]
+{
+    background-color:rgb(185, 65, 71);
+    width:80%;
+    max-width: 300px;
+    border:none;
+    font-size: 120%;
+    font-weight: 500;
+    color:white;
+    padding-top:8px;
+    padding-bottom:10px;
+    border-radius:20px;
+    margin:auto;  
+    margin-top: 25px; 
+}
+
+.login-area input[type=submit]:hover
+{
+    transform: scale(.95);
+    cursor: pointer;
+}
+
+.login-area div
+{
+    margin-top:20px;
+}
+
+.sign_up .link
+{
+    padding-top:10px;
+}

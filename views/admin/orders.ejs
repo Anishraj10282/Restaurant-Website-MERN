@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/orders.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+    <header>
+        <h1>JUST EAT IT</h1>
+        <div class="navbar" id="navbar">
+            <a href="javascript:void(0);" class="icon" onClick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+            <a href="/admin/orders" class="active">Orders</a>
+            <a href="#">Dashboard</a>
+            <a href="/admin/add-item">Add New Recepie</a>
+            <a href="#">Edit Product</a>
+            <a href="#">Reservations</a>
+            
+        </div>
+    </header>
+    <main>
+        <div class="today-orders-summary">
+            <div class="information-item">
+                <div class="information-title">
+                    Delivered
+                </div>
+                <div class="information">
+                    25
+                </div>
+            </div>
+            <div class="information-item">
+                <div class="information-title">
+                    On the Way
+                </div>
+                <div class="information">
+                    3
+                </div>
+            </div>
+            <div class="information-item">
+                <div class="information-title">
+                    Preparing
+                </div>
+                <div class="information">
+                    4
+                </div>
+            </div>
+            <div class="information-item">
+                <div class="information-title">
+                    Total Purchase Today
+                </div>
+                <div class="information">
+                    4500
+                </div>
+            </div>
+            <div class="information-item">
+                <div class="information-title">
+                    Order Cancelled
+                </div>
+                <div class="information">
+                    5
+                </div>
+            </div>
+        </div>
+
+        <h3>Food Order</h3>
+        <div class="orders">
+            <table class="orders-table">
+                <tr class="order-title">
+                    <th class="customer-name-title">
+                        Customer
+                    </th>
+                    <th class="address-title">
+                        Address
+                    </th>
+                    <th class="order-total-title">
+                        Menu
+                    </th>
+                    <th class="status-title">
+                        Status
+                    </div>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Anish Raj
+                    </td>
+                    <td class="address">
+                        Something Something
+                    </td>
+                    <td class="order-total">
+                        345
+                    </td>
+                    <td class="status">
+                        Pending
+                    </td>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Customer
+                    </td>
+                    <td class="address">
+                        Address
+                    </td>
+                    <td class="order-total">
+                        Menu
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Customer
+                    </td>
+                    <td class="address">
+                        Address
+                    </td>
+                    <td class="order-total">
+                        Menu
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Customer
+                    </td>
+                    <td class="address">
+                        Address
+                    </td>
+                    <td class="order-total">
+                        Menu
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Customer
+                    </td>
+                    <td class="address">
+                        Address
+                    </td>
+                    <td class="order-total">
+                        Menu
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Customer
+                    </td>
+                    <td class="address">
+                        Address
+                    </td>
+                    <td class="order-total">
+                        Menu
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+                <tr class="order">
+                    <td class="customer-name">
+                        Customer
+                    </td>
+                    <td class="address">
+                        Address
+                    </td>
+                    <td class="order-total">
+                        Menu
+                    </td>
+                    <td class="status">
+                        Status
+                    </td>
+                </tr>
+            </table>            
+
+    </main>
+    <script>
+        function myFunction()
+        {
+            console.log(2);
+            var x = document.getElementById("navbar");
+            if(!x.classList.contains("responsive"))
+            {
+                console.log(x.classList);
+                x.classList.add("responsive");
+                console.log(x.classList);
+            }
+            else
+            {
+                x.classList.remove('responsive');
+            }
+        }
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      socket.on('order received', function(msg)
+      {
+        console.log(msg);
+      });
+    </script>
+</body>
+</html>

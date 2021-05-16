@@ -1,0 +1,171 @@
+main
+{
+    padding-top:100px;
+}
+
+
+.category-title
+{
+    padding:10px 20px;
+    color:white;
+    border-radius:20px;
+    background-color: rgb(223, 39, 39);
+    width: fit-content;
+    margin-top:40px;
+    margin-bottom:5px;
+    margin-left:5%;
+    font-weight: 600;
+    font-size:105%;
+}
+
+.category-card
+{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    border-bottom:1px solid tomato;
+    width:90%;
+    margin:auto;
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:10px;
+}
+
+#after-discount
+{
+    color:black;
+    font-weight: 600;
+    font-size: 102%;
+    margin-right:10px;
+}
+
+.dish-card
+{
+    overflow:hidden;
+    max-width:200px;
+    margin:auto;
+    text-align:center;
+    color:green;
+    border-radius: 10px;
+    margin-bottom:20px;
+}
+
+.dish-price
+{
+    color:rgba(0,0,0,0.6);
+    text-decoration:wavy;
+}
+
+button
+{
+    width:25px;
+    border-radius:5px;
+    background-color: black;
+    border:none;
+    padding:0px 5px;
+    font-weight: 500;
+    font-size: 120%;
+}
+
+
+.add-to-cart
+{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    color:white;
+    width:100%;
+    margin-top:10px;
+    overflow: hidden;
+}
+.add-to-cart i
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:18px;
+    padding-right:18px;
+}
+
+
+.add-to-cart span
+{
+    border:none;
+    background-color: none;
+    text-align: center;
+    width:71px;
+    color:wheat;
+    padding-bottom:3px;
+}
+
+.plus
+{
+    background-color: rgb(28, 197, 112);
+}
+.minus
+{
+    background-color:rgb(223, 39, 39);
+}
+.add-to-cart .plate-numbers
+{
+    background-color:black;
+    padding-top:10px;
+}
+.img-area
+{
+    overflow: hidden;
+    height: 200px;
+    margin-bottom:10px;
+}
+img
+{
+    height:200px;
+    width:200px;
+}
+
+.sticky-cart
+{
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    bottom:0;
+    right: 0;
+    margin-left: auto;
+    position:sticky;
+    box-shadow:0 0 10px rgba(0,0,0,0.6);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width:fit-content;
+    height:fit-content;
+    color:white;
+    overflow: hidden;
+}
+
+.cart-title
+{
+    text-align: center;
+    background-color:rgba(223, 39, 39,1);
+    font-size: 120%;
+    font-weight: 700;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
+.cart-grid
+{
+    min-width: 200px;
+    background-color: white;
+    color:black;
+    margin:auto;
+    padding-top: 5px;
+    padding-right:10px;
+    padding-left:10px;
+    padding-bottom:10px;
+}
+.cart-grid div
+{
+    margin-bottom:2px;
+}
+.btn
+{
+    font-size: 125%;
+    font-weight: 600;
+    background-color: rgb(28, 197, 112);
+    color:white;
+}
