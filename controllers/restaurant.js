@@ -4,21 +4,25 @@ const { use } = require('../routes/restaurant');
 const DishModel =  mongoose.model('dishes');
 const CategoryModel = mongoose.model('categories');
 const UserModel = mongoose.model('users');
+const OrderModel = mongoose.model('orders');
+const Stripe = require('stripe')('//stripe secret key');
 
 exports.getHome = (req, res, next)=>
 {
-    res.render('restaurant/home');
+    var userName = req.user.name;
+    var userId = req.user._id;
+    res.render('restaurant/home',{userName:userName, userId:userId});
 }
 
 exports.getReservation = (req, res, next)=>
 {
-    res.render('restaurant/reservation');
+    res.render('restaurant/reservation', {userName:req.user.name});
 }
 
 
 exports.getAbout = (req, res, next) =>
 {
-    res.render('restaurant/about');
+    res.render('restaurant/about', {userName:req.user.name});
 }
 
 exports.getMenu = async (req, res, next) =>
@@ -31,7 +35,7 @@ exports.getMenu = async (req, res, next) =>
         var categoryDishes = await DishModel.find({category:category._id});
         answer.push({category:category.name, dishes:[...categoryDishes]});
     }
-    res.render('restaurant/menu', {category:answer});
+    res.render('restaurant/menu', {category:answer, userName:req.user.name});
 }
 
 
@@ -45,7 +49,7 @@ exports.getOrderOnline = async (req, res, next)=>
         var categoryDishes = await DishModel.find({category:category._id});
         answer.push({category:category.name, dishes:[...categoryDishes]});
     }
-    res.render('restaurant/order_online', {category:answer});
+    res.render('restaurant/order_online', {category:answer, userName:req.user.name});
 }
 
 exports.postOrderOnline = async (req, res, next)=>
@@ -80,7 +84,13 @@ exports.postLogIn = async (req, res, next)=>
     else {
         if(user.password!=req.body.password)
             return res.render('restaurant/login');
-        return res.redirect('/order-online')
+        else
+        {
+            req.session.isLoggedIn = true;
+            req.session.user = user;
+            req.session.save();
+            return res.redirect('/');
+        }
     };
 }
 
@@ -124,7 +134,61 @@ exports.postAddTocart = async (req, res, next) =>
             discount:dish.discount, _id:dish._id,qty:qty});
     }
 
-    res.render('restaurant/cart', {orders:answer, total:total.toFixed(2), 
-            total_after_discount:total_after_discount.toFixed(2), 
-            discount:(total-total_after_discount).toFixed(2)}, );
+
+    return Stripe.checkout.sessions.create({
+        payment_method_types:['card'],
+        line_items:answer.map(p=>{
+            return {
+                currency:'inr',
+                name:+p.title * 100,
+                amount:+p.price * 100,
+                quantity:p.qty,
+            }
+        }),
+        success_url:req.protocol + '://' + req.get('host') + '',
+        cancel_url:req.protocol + '://' + req.get('host') + '/order_online',
+    }).then(session=>
+        {
+            res.render('restaurant/cart', {userName:req.user.name,orders:answer, total:total.toFixed(2), 
+                total_after_discount:total_after_discount.toFixed(2), 
+                discount:(total-total_after_discount).toFixed(2), sessionId:session.id});
+        }
+    
+    )
+
+   
+}
+
+
+exports.continueToPay = (req, res, next)=>
+{
+    var newOrder = new OrderModel();
+
+    newOrder.userId = req.user._id;
+    newOrder.timeStamp = Date.now();
+    newOrder.totalAmount = +req.body.total_price;
+
+    var orderKeys = Object.keys(req.body);
+    var orders = [];
+
+    for(var i=0;i<orderKeys.length;i++)
+    {
+        const k = orderKeys[i];
+        if(req.body[k]!='total_price')
+        {
+            orders.push({_id:k, qty:req.body[k]});
+        }
+    }
+    newOrder.items=orders;
+    newOrder.save();
+    res.redirect('errors/404');
+}
+
+
+exports.getLogout = (req, res, next)=>
+{
+    req.session.destroy(err=>
+        {
+            res.redirect('/');
+        })
 }

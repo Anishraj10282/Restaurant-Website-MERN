@@ -21,10 +21,11 @@
             <a href="/order-online" class="active">Order Online</a>
             <a href="/about">About</a>
             <a href="/reservation">Reservation</a>
-            <a href="/login">Login</a>
+            <a href="#" class="active">Welcome <%= userName %></a>
+            <a href="/logout">Logout</a>
         </div>
     </header>
-    
+    <form action="/continue-to-pay" method="post"></form>
     <main>
         <div class="cart-area">
             <div class="order-area">
@@ -35,6 +36,7 @@
                         </div>
                         <div class="item-name">
                             <%= order.title %>
+                            <input type="hidden" name="<%= order._id %>" value="<%= order.qty %>">
                         </div>
                         <div class="item-qty">
                             <%= order.qty %>
@@ -67,15 +69,27 @@
                     <div></div>
                     <div class="total">
                         <%= total_after_discount %>
+                        <input type="hidden" name="total_price" value="<%= total_after_discount %>">
                     </div>
                 </div>
             </div>
         </div>
     </main>
+        <button id="Hello" class="sticky-area" >Continue-to-Pay</button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+            var stripe = Stripe('// Set your publisher key');
+            var orderBtn = document.getElementById('Hello');
+            orderBtn.addEventListener('click', function()
+            {
+                stripe.redirectToCheckout(
+                    {
+                        sessionId:'<%= sessionId %>'
+                    }
+                );
+            });
+        </script>
 
-    <div class="sticky-area">
-        Pay and Order
-    </div>
     <script>
         function myFunction()
         {
